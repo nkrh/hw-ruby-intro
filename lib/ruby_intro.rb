@@ -3,33 +3,74 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  x = 0
+  arr.each do |y|
+    x += y
+  end
+  x
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  sum arr.sort.reverse.take(2)
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+  arr.permutation(2) do |a|
+    (sum a) == n and return true
+  end
+  false
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, #{name}"
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  s = s.to_s
+  not s.empty? and ("BCDFGHJKLMNPQRSTVWXYZ".include?(s[0].upcase))
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+   !(/^[01]+$/ =~ s).nil? and !(/[01]+(?<!11|10|01|1)$/ =~ s.to_s).nil?
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  
+  def initialize(isbn, price)
+    self.price = price
+    self.isbn = isbn
+  end
+  
+  def price_as_string
+    '$%.2f' % @price
+  end
+  
+  def price
+    @price
+  end
+  
+  def price=(new_price)
+    if new_price <= 0
+      raise ArgumentError
+    else
+      @price = new_price  
+    end
+  end
+  
+  def isbn
+    @isbn
+  end
+  
+  def isbn=(new_isbn)
+    if (new_isbn =~ /^[a-z0-9\-]+$/i).nil?
+      raise ArgumentError
+    else
+      @isbn = new_isbn
+    end
+  end
+  
 end
